@@ -871,6 +871,7 @@ class Wallet {
         // TODO move to nearapi js Account.js
         // TODO: When is this hit? How to get tx hashes?
         if (account.signAndSendTransactions) {
+            // TODO: Make sure to return transactionHashes for 2FA accounts
             return account.signAndSendTransactions(transactions)
         }
 
@@ -886,6 +887,8 @@ class Wallet {
 
             transactionHashes.push(hash)
         }
+
+        return transactionHashes;
     }
 
     dispatchShowLedgerModal(show) {

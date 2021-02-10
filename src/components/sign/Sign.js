@@ -10,6 +10,7 @@ import SignTransferSuccess from './SignTransferSuccess'
 import SignTransferCancelled from './SignTransferCancelled'
 import SignTransferTransferring from './SignTransferTransferring'
 import { signAndSendTransactions } from '../../actions/account'
+import { base_encode } from 'near-api-js/lib/utils/serialize'
 
 class Sign extends Component {
 
@@ -36,7 +37,7 @@ class Sign extends Component {
         if (this.props.callbackUrl) {
             window.location.href = addQueryParams(callbackUrl, {
                 meta,
-                transactionHashes: transactionHashes.map(hash => hash.toString('base64'))
+                transactionHashes: transactionHashes.map(hash => base_encode(hash)).join(',')
             })
         }
     }
